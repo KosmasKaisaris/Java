@@ -11,7 +11,6 @@ public class Theatre {
 // 		return theatreName;
 // 	}
 	
-
 // 	public Theatre(String theatreName,int numRows,int seatsPerRow) {
 // 		this.theatreName = theatreName;
 		
@@ -41,10 +40,6 @@ public class Theatre {
 // 		return requestedSeat.reserve();
 // 	}
 	
-// 	public void getSeats() {
-// 		for(Seat seat : seats) {
-// 			System.out.println(seat.getSeatNumber());
-// 		}
 // 	}
 	
 // 	private class Seat{
@@ -66,23 +61,7 @@ public class Theatre {
 // 			}else {
 // 				return false;
 // 			}
-// 		}
-		
-// 		public boolean cancel() {
-// 			if(this.reserved) {
-// 				this.reserved=false;
-// 				System.out.println("Reservation of seat " + seatNumber + " canceleed" );
-// 				return true;
-// 			}else {
-// 				return false;
-// 			}
-// 		}
-		
-// 		public String getSeatNumber() {
-// 			return seatNumber;
-// 		}
-		
-		
+// 		}		
 // 	}
 	private List<Seat> seats = new ArrayList<>();
 
