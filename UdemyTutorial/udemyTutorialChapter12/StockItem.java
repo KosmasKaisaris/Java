@@ -1,5 +1,7 @@
 package udemyTutorialChapter12;
 
+import java.util.Map;
+
 public class StockItem implements Comparable<StockItem>{
     private final String name;
     private double price;
@@ -42,6 +44,7 @@ public class StockItem implements Comparable<StockItem>{
             this.quantityStock = newQuantity;
         }
     }
+
 
     @Override
     public boolean equals(Object obj) {
