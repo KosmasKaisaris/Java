@@ -1,152 +1,144 @@
-package udemyTutorialChapter16;
+package udemyTutorialChapter17;
 
-import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
     public static void main(String[] args) {
-        new Thread(() -> {
-            System.out.println("Printing from the Runnable");
-            System.out.println("Line 2");
-            System.out.format("This is line %d\n", 3);
-        }).start();
+        String string = " I am a string. Yes , I am.";
+        System.out.println(string);
+        String yourString = string.replaceAll("I", "You");
+        System.out.println(yourString);
 
-        Employee john = new Employee("John Doe", 30);
-        Employee tim = new Employee("Kosmas Kaisaris", 21);
-        Employee jack = new Employee("Jack Hill", 40);
-        Employee snow = new Employee("Snow White", 22);
+        String alphanumeric = "abcDeeeF12Ghhiiiikl99z";
+        System.out.println(alphanumeric.replaceAll(".","Y"));
 
-        List<Employee> employees = new ArrayList<>();
-        employees.add(john);
-        employees.add(tim);
-        employees.add(jack);
-        employees.add(snow);
+        System.out.println(alphanumeric.replaceAll("^abcDeee", "YYY"));
 
+        String secondString = "abcDeeeF12GhhabcDeeeiiiiijkl99z";
+        System.out.println(secondString.replaceAll("^abcDeee","YYY"));
 
-//        Collections.sort(employees, new Comparator<Employee>() {
-//            @Override
-//            public int compare(Employee employee1, Employee employee2) {
-//                return employee1.getName().compareTo(employee2.getName());
-//            }
-//        });
+        System.out.println(alphanumeric.matches("^hello"));
+        System.out.println(alphanumeric.matches("^abcDeee"));
+        System.out.println(alphanumeric.matches("^abcDeeeF12Ghhiiiikl99z"));
 
-//        Collections.sort(employees, (Employee employee1, Employee employee2) ->
-//                employee1.getName().compareTo(employee2.getName()));
-//
-//        for (Employee employee : employees) {
-//            System.out.println(employee.getName());
-//        }
+        System.out.println(alphanumeric.replaceAll("iikl99z$" , "THE END"));
+        System.out.println(alphanumeric.replaceAll("[aei]","X"));
 
-//        String sillyString = doStringStuff(new UpperConcat() {
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                return s1.toUpperCase() + s2.toUpperCase();
-//            }
-//        },
-//                employees.get(0).getName(),employees.get(1).getName());
-//                System.out.println(sillyString);
+        System.out.println(alphanumeric.replaceAll("[aei]","I replaced a letter here"));
 
+        System.out.println(alphanumeric.replaceAll("[aei][Fj]","X"));
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                System.out.println("printing from the Runnalbe");
-//            }
-//        }).start();
-//        UpperConcat uc = (String s1,String s2) ->s1.toUpperCase() + s2.toUpperCase(); //String can be removed
-//        String sillyString = doStringStuff(uc,employees.get(0).getName(),employees.get(1).getName());
+        System.out.println("harry".replaceAll("[Hh]arry" , "Harry"));
 
-//        UpperConcat uc = ( s1, s2) -> {
-//            String result = s1.toUpperCase() + s2.toUpperCase();
-//            return result;
-//        };
-//        String sillyString = doStringStuff(uc,employees.get(0).getName(),employees.get(1).getName());
-        AnotherClass anotherClass = new AnotherClass();
-        String s = anotherClass.doSomething();
-        System.out.println(s);
-    }
+        String newAlphanumeric = "abcDeeeF12Ghhiiiikl99z";
+        System.out.println(newAlphanumeric.replaceAll("[^ej]", "X"));
+        System.out.println(newAlphanumeric.replaceAll("[abcdef345678]", "X"));
+        System.out.println(newAlphanumeric.replaceAll("[a-fA-F3-8]","X"));
+        System.out.println(newAlphanumeric.replaceAll("(?i)[a-f3-8]","X"));
+        System.out.println(newAlphanumeric.replaceAll("[0-9]","X"));
+        System.out.println(newAlphanumeric.replaceAll("\\d","X"));
+        System.out.println(newAlphanumeric.replaceAll("\\D","X"));
 
-    public final static String doStringStuff(UpperConcat uc, String s1, String s2) {
-        return uc.upperAndConcat(s1, s2);
-    }
-}
+        String hasWhiteSpace = "I have blanks and\ta tab, and also a newline\n";
+        System.out.println(hasWhiteSpace);
+        System.out.println(hasWhiteSpace.replaceAll("\\s",""));
+        System.out.println(hasWhiteSpace.replaceAll("\t","X"));
+        System.out.println(hasWhiteSpace.replaceAll("\\S",""));
 
-//class CodeToRun implements Runnable {
-//    @Override
-//    public void run() {
-//        System.out.println("Printing from the Runnable");
-//    }
-//}
+        System.out.println(newAlphanumeric.replaceAll("\\w","X"));
+        System.out.println(hasWhiteSpace.replaceAll("\\w","X"));
+        System.out.println(hasWhiteSpace.replaceAll("\\b","X"));
 
-class Employee {
-    private String name;
-    private int age;
+        String thirdAlphanumericString = "abcDeeeF12Ghhiiiijkl99z";
+        System.out.println(thirdAlphanumericString.replaceAll("^abcDe{3}", "YYY"));
+        System.out.println(thirdAlphanumericString.replaceAll("^abcDe+" , "YYY"));
 
-    public Employee(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
+        System.out.println(thirdAlphanumericString.replaceAll("^abcDe*", "YYY"));
+        System.out.println(thirdAlphanumericString.replaceAll("^abcDe{2,5}","YYY"));
+        System.out.println(thirdAlphanumericString.replaceAll("h+i*j","Y"));
 
-    public String getName() {
-        return name;
-    }
+        StringBuilder htmlText= new StringBuilder("<h1>My Heading</h1>");
+        htmlText.append("<h2>Sub-heading</h2>");
+        htmlText.append("<p>This is a paragraph about something.</p>");
+        htmlText.append("<p>This is another paragraph about something else.</p>");
+        htmlText.append("<h2>Summary</h2>");
+        htmlText.append("<p>Here is the summary.</p>");
 
-    public void setName(String name) {
-        this.name = name;
-    }
+        String h2Pattern ="(<h2>)";
+        Pattern pattern = Pattern.compile(h2Pattern );//Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE
+        Matcher matcher = pattern.matcher(htmlText);
+        System.out.println(matcher.matches());
 
-    public int getAge() {
-        return age;
-    }
+        matcher.reset();
+        int count = 0;
+        while(matcher.find()){
+            count++;
+            System.out.println("Occurrence " + count + " : " + matcher.start() + " to " + matcher.end());
+        }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-}
+        String h2GroupPattern = "(<h2>.*?</h2>)";
+        Pattern groupPattern = Pattern.compile(h2GroupPattern);
+        Matcher groupMatcher = groupPattern.matcher(htmlText);
+        System.out.println(groupMatcher.matches());
+        groupMatcher.reset();
 
-interface UpperConcat {
-    public String upperAndConcat(String s1, String s2);
-}
+        while (groupMatcher.find()){
+            System.out.println("Occurrence: " + groupMatcher.group(1));
+        }
 
-class AnotherClass {
-    public String doSomething() {
-//        UpperConcat uc =(s1,s2) -> {
-//            System.out.println("The lambda expression's class is "+ getClass().getSimpleName());
-//            String result =s1.toUpperCase()+s2.toUpperCase();
-//            return result;
-//        };
-        int i = 0;
-
-        UpperConcat uc =(s1,s2) ->{
-            System.out.println("The lambda expression's class is "+ getClass().getSimpleName());
-            System.out.println("i in the lambda expression = " + i);
-            String result = s1.toUpperCase() + s2.toUpperCase();
-            return result;
-        };
+        String h2TextGroups = "(<h2>)(.+?)(</h2>)";
+        Pattern h2TextPatten = Pattern.compile(h2TextGroups);
+        Matcher h2TextMatcher = h2TextPatten.matcher(htmlText);
 
 
-//        UpperConcat uc = new UpperConcat() {
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                System.out.println("i (within another class) = " + i);
-//                return s1.toUpperCase() + s2.toUpperCase();
-//            }
-//        };
-        System.out.println("The AnotherClass class's name is " + getClass().getSimpleName());
+        while (h2TextMatcher.find()){
+            System.out.println("Occurrence: " + h2TextMatcher.group(2));
+        }
 
-        System.out.println("i = " + i);
-        return Main.doStringStuff(uc, "String1", "String2");
+        // "abc" "a" and "b" and "c"
+        System.out.println("harry".replaceAll("[H|h]arry", "Larry"));
+        System.out.println("Harry".replaceAll("[H|h]arry", "Larry"));
 
 
+        // [^abc]
+        String tvTest = "tstvtkt";
+        //String tNotVRegExp = "t[^v]";
+        String tNotVRegExp = "t(?!v)";
+        Pattern tNotVPattern = Pattern.compile(tNotVRegExp);
+        Matcher tNotVMatcher = tNotVPattern.matcher(tvTest);
 
-//        System.out.println("The AnotherClass class's name is: " + getClass().getSimpleName());
-//        return Main.doStringStuff(new UpperConcat() {
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                System.out.println("The anonymous class's name is: "+ getClass().getSimpleName());
-//                return s1.toUpperCase() + s2.toUpperCase();
-//            }
-//        },"String1","String2");
+        count=0;
+        while(tNotVMatcher.find()){
+            count++;
+            System.out.println("Occurrence " + count + " : " +  tNotVMatcher.start() +  " to " + tNotVMatcher.end());
+        }
+
+        // t(?=v)
+        // ^([\(]{1}[0-9]{3}[\)]{1}[ ]{1}[0-9]{3}[\-]{1}[0-9]{4})$
+        String phone1 = "1234567890"; //Shouldnt match
+        String phone2 = "(123) 456-7890";//match
+        String phone3 = "123 456-7890";//Shouldnt match
+        String phone4 = "(123)456-7890";//Shouldnt match
+
+        System.out.println("phone1 = "+ phone1.matches("^([\\(]{1}[0-9]{3}[\\)]{1}[ ]{1}[0-9]{3}[\\-]{1}[0-9]{4})$"));
+        System.out.println("phone2 = "+ phone2.matches("^([\\(]{1}[0-9]{3}[\\)]{1}[ ]{1}[0-9]{3}[\\-]{1}[0-9]{4})$"));
+        System.out.println("phone3 = "+ phone3.matches("^([\\(]{1}[0-9]{3}[\\)]{1}[ ]{1}[0-9]{3}[\\-]{1}[0-9]{4})$"));
+        System.out.println("phone4 = "+ phone4.matches("^([\\(]{1}[0-9]{3}[\\)]{1}[ ]{1}[0-9]{3}[\\-]{1}[0-9]{4})$"));
+
+        // ^4[0-9]{12}([0-9]{3})?$
+        String visa1 = "4444444444444"; //should match
+        String visa2 = "5444444444444"; //shouldnt match
+        String visa3 = "4444444444444444"; //should match
+        String visa4 ="4444"; //shouldnt match
+
+        System.out.println("visa1 " + visa1.matches("^4[0-9]{12}([0-9]{3})?$"));
+        System.out.println("visa2 " + visa2.matches("^4[0-9]{12}([0-9]{3})?$"));
+        System.out.println("visa3 " + visa3.matches("^4[0-9]{12}([0-9]{3})?$"));
+        System.out.println("visa4 " + visa4.matches("^4[0-9]{12}([0-9]{3})?$"));
+
+
+
     }
 }
-
